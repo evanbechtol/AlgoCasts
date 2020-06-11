@@ -12,6 +12,36 @@
 //   4
 //   buzz
 
-function fizzBuzz(n) {}
+function fizzBuzz ( n ) {
+  const fizz = "fizz";
+  const buzz = "buzz";
+
+  for ( let i = 1; i <= n; i++ ) {
+    let isFizz = isMultipleOfThree( i );
+    let isBuzz = isMultipleOfFive( i );
+    let str = "";
+
+    if ( !( isFizz || isBuzz ) ) {
+      str = i;
+    } else {
+      if ( isFizz ) {
+        str += fizz;
+      }
+
+      if ( isBuzz ) {
+        str += buzz;
+      }
+    }
+    console.log(str);
+  }
+}
+
+function isMultipleOfThree ( n ) {
+  return n % 3 === 0;
+}
+
+function isMultipleOfFive ( n ) {
+  return n % 5 === 0;
+}
 
 module.exports = fizzBuzz;
