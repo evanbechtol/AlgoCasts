@@ -7,7 +7,7 @@
 //   pyramid(1)
 //       '#'
 //   pyramid(2)
-//       ' # ' 1
+//       ' # '
 //       '###'
 //   pyramid(3)
 //       '  #  '
@@ -19,7 +19,7 @@
 //       r2 ' ##### ' i=2 #=4+1
 //       r3 '#######' i=3 #=6+1
 
-function pyramid ( n ) {
+function pyramid2 ( n ) {
   //number of spaces on either side = n - (r# + 1) > 0 ? n - (r# + 1) : 0
   for ( let i = 0; i < n; i++ ) {
     let str = "";
@@ -29,6 +29,18 @@ function pyramid ( n ) {
 
     console.log( str );
   }
+}
+
+function pyramid ( n, counter = 0 ) {
+  if ( counter === n ) {
+    return;
+  }
+
+  const numSpaces = n - ( counter + 1 ) > 0 ? n - ( counter + 1 ) : 0;
+  const numAsterisks = counter * 2 + 1;
+  console.log( " ".repeat( numSpaces ) + "#".repeat( numAsterisks ) + " ".repeat( numSpaces ) );
+
+  pyramid( n, ++counter );
 }
 
 module.exports = pyramid;
