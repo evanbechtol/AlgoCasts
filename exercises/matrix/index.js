@@ -14,7 +14,49 @@
 //     [12, 13, 14, 5],
 //     [11, 16, 15, 6],
 //     [10,  9,  8, 7]]
+// matrix(5)
+//     [[1,   2,  3,  4, 5]
+//     [16, 17, 18, 19, 6]
+//     [15  24, 25, 20, 7]
+//     [14, 23, 22, 21, 8]
+//     [13, 12, 11, 10, 9]]
 
-function matrix(n) {}
+function matrix ( n ) {
+  let startRow = 0;
+  let endRow = n - 1;
+  let startColumn = 0;
+  let endColumn = n - 1;
+  let counter = 1;
+  let results = new Array( n ).fill().map( () => new Array( n ).fill() );
 
+  while ( startColumn <= endColumn && startRow <= endRow ) {
+    // Top Row
+    for( let i = startColumn; i <= endColumn; i++ ) {
+      results[startRow][i] = counter++;
+    }
+    startRow++;
+
+    // Right Column
+    for(let i = startRow; i <= endRow; i++ ) {
+      results[i][endColumn] = counter++;
+    }
+    endColumn--;
+
+    // Bottom Row
+    for( let i = endColumn; i >= startColumn; i-- ) {
+      results[endRow][i] = counter++;
+    }
+    endRow--;
+
+    // Left Column
+    for(let i = endRow; i >= startRow; i-- ) {
+      results[i][startColumn] = counter++;
+    }
+
+    startColumn++;
+  }
+
+  return results;
+}
+console.log(matrix(3));
 module.exports = matrix;
