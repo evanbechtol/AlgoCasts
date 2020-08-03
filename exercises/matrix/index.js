@@ -31,28 +31,27 @@ function matrix ( n ) {
 
   while ( startColumn <= endColumn && startRow <= endRow ) {
     // Top Row
-    for( let i = startColumn; i <= endColumn; i++ ) {
-      results[startRow][i] = counter++;
+    for ( let i = startColumn; i <= endColumn; i++ ) {
+      results[ startRow ][ i ] = counter++;
     }
     startRow++;
 
     // Right Column
-    for(let i = startRow; i <= endRow; i++ ) {
-      results[i][endColumn] = counter++;
+    for ( let i = startRow; i <= endRow; i++ ) {
+      results[ i ][ endColumn ] = counter++;
     }
     endColumn--;
 
     // Bottom Row
-    for( let i = endColumn; i >= startColumn; i-- ) {
-      results[endRow][i] = counter++;
+    for ( let i = endColumn; i >= startColumn; i-- ) {
+      results[ endRow ][ i ] = counter++;
     }
     endRow--;
 
     // Left Column
-    for(let i = endRow; i >= startRow; i-- ) {
-      results[i][startColumn] = counter++;
+    for ( let i = endRow; i >= startRow; i-- ) {
+      results[ i ][ startColumn ] = counter++;
     }
-
     startColumn++;
   }
 
