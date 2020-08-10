@@ -17,6 +17,10 @@ class LinkedList {
   insertFirst(data) {
     this.head = new Node(data, this.head);
   }
+
+  size() {
+
+  }
 }
 
 module.exports = { Node, LinkedList };
