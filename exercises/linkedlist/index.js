@@ -11,15 +11,23 @@ class Node {
 
 class LinkedList {
   constructor () {
-     this.head = null;
+    this.head = null;
   }
 
-  insertFirst(data) {
-    this.head = new Node(data, this.head);
+  insertFirst ( data ) {
+    this.head = new Node( data, this.head );
   }
 
-  size() {
+  size () {
+    let count = 0;
+    let currentNode = this.head;
 
+    while ( currentNode ) {
+      count++;
+      currentNode = currentNode.next;
+    }
+
+    return count;
   }
 }
 
