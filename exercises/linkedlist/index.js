@@ -30,30 +30,48 @@ class LinkedList {
     return count;
   }
 
-  getFirst() {
+  getFirst () {
     return this.head;
   }
 
-  getLast() {
+  getLast () {
     let node = this.head;
 
-    while (node && node.next) {
+    while ( node && node.next ) {
       node = node.next;
     }
 
     return node;
   }
 
-  clear() {
+  clear () {
     this.head = null;
   }
 
-  removeFirst() {
-    if (!this.head) {
+  removeFirst () {
+    if ( !this.head ) {
       return;
     }
 
     this.head = this.head.next;
+  }
+
+  removeLast () {
+    if ( !this.head ) {
+      return;
+    } else if ( this.size() === 1 ) {
+      this.head = null;
+    } else {
+      let node = this.head.next;
+      let previous = this.head;
+
+      while ( node.next ) {
+        previous = node;
+        node = node.next;
+      }
+
+      previous.next = null;
+    }
   }
 }
 
