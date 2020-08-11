@@ -99,6 +99,36 @@ class LinkedList {
 
     return null;
   }
+
+  removeAt ( index ) {
+    /*
+     cases:
+     1) Remove head
+     2) Remove node from middle
+     3) Remove node from end
+     (cases 2 and 3 solved with same code)
+     */
+
+    // No nodes in the list
+    if ( !this.head ) {
+      return;
+    }
+
+    // Case 1: Removing head node
+    if ( index === 0 ) {
+      this.head = this.head.next;
+      return;
+    }
+
+    // Case 2 & 3: Removing middle or last node
+    const previous = this.getAt( index - 1 );
+
+    if ( !( previous && previous.next ) ) {
+      return;
+    }
+
+    previous.next = previous.next.next;
+  }
 }
 
 module.exports = { Node, LinkedList };
