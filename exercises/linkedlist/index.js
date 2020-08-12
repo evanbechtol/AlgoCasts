@@ -15,7 +15,7 @@ class LinkedList {
   }
 
   insertFirst ( data ) {
-    this.head = new Node( data, this.head );
+    this.insertAt( data, 0 );
   }
 
   size () {
@@ -31,17 +31,11 @@ class LinkedList {
   }
 
   getFirst () {
-    return this.head;
+    return this.getAt( 0 );
   }
 
   getLast () {
-    let node = this.head;
-
-    while ( node && node.next ) {
-      node = node.next;
-    }
-
-    return node;
+    return this.getAt( this.size() - 1 );
   }
 
   clear () {
@@ -53,35 +47,19 @@ class LinkedList {
       return;
     }
 
-    this.head = this.head.next;
+    this.removeAt( 0 );
   }
 
   removeLast () {
     if ( !this.head ) {
       return;
-    } else if ( this.size() === 1 ) {
-      this.head = null;
-    } else {
-      let node = this.head.next;
-      let previous = this.head;
-
-      while ( node.next ) {
-        previous = node;
-        node = node.next;
-      }
-
-      previous.next = null;
     }
+
+    this.removeAt( this.size() - 1 );
   }
 
   insertLast ( Data ) {
-    let last = this.getLast();
-
-    if ( last ) {
-      last.next = new Node( Data );
-    } else {
-      this.head = new Node( Data );
-    }
+    this.insertAt( Data, this.size() );
   }
 
   getAt ( index ) {
@@ -128,6 +106,31 @@ class LinkedList {
     }
 
     previous.next = previous.next.next;
+  }
+
+  insertAt ( data, index ) {
+    // List is empty, insert node at head
+    if ( !this.head ) {
+      this.head = new Node( data );
+      return;
+    }
+
+    // Insert node at head when there are already nodes in list
+    if ( index === 0 ) {
+      this.head = new Node( data, this.head );
+      return;
+    }
+
+    // Index is beyond bounds, insert node at tail
+    if ( index > this.size() ) {
+      const lastNode = this.getLast();
+      lastNode.next = new Node( data );
+      return;
+    }
+
+    // Index is in middle of list, insert node between two nodes
+    const previous = this.getAt( index - 1 );
+    previous.next = new Node( data, previous.next );
   }
 }
 
